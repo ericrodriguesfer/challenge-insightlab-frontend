@@ -1,11 +1,10 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import Routes from "./routes/routes";
 
 function App() {
   return (
     <React.Fragment>
-      <h1>Olá</h1>
+      <Routes />
     </React.Fragment>
   );
 }
