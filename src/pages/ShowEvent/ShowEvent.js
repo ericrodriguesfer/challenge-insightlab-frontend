@@ -1,14 +1,20 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button } from "antd";
 import { DoubleLeftOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
 
 function ShowEvent() {
+  const handleClick = () => {
+    toast.warning("Efetue seu login de participante!");
+  };
+
   return (
     <React.Fragment>
+      <ToastContainer />
       <Row>
         <Col span={24}>
           <nav className="nav-show-event">
@@ -50,13 +56,15 @@ function ShowEvent() {
                   <p>Horário: 12:00 Horas</p>
                   <p>Data: 20/20/2020</p>
                 </div>
-                <Button
-                  className="button-participate-event"
-                  type="primary"
-                  icon={<PlusCircleOutlined />}
-                >
-                  Participar
-                </Button>
+                <Link onClick={handleClick}>
+                  <Button
+                    className="button-participate-event"
+                    type="primary"
+                    icon={<PlusCircleOutlined />}
+                  >
+                    Participar
+                  </Button>
+                </Link>
               </div>
             </div>
           </Col>
