@@ -20,7 +20,7 @@ function Home() {
     console.log(data);
     localStorage.setItem("nameEvent", data.name);
     localStorage.setItem("ageEvent", data.age);
-    history.push("/register");
+    history.push("/show-event");
   }
 
   return (
