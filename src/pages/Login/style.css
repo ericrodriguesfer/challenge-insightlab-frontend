@@ -1,5 +1,5 @@
 .content-form-login {
-    margin-top: 12% !important;
+    margin-top: 10% !important;
 }
 
 .body-form {
@@ -23,4 +23,10 @@
 
 .select-form-login {
     width: 100% !important;
+}
+
+.link-page-register {
+    float: left;
+    font-size: 12px;
+    margin-top: -30px;
 }

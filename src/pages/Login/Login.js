@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import { Row, Col, Form, Input, Button, Select } from "antd";
 
 import "./style.css";
@@ -7,9 +8,14 @@ import InsigthLabIcon from "../../images/insigthlab-icon.png";
 const { Option } = Select;
 
 function Login() {
+  const [loginFormAcess, setLoginFormAcess] = useState("");
+  const [passFormAcess, setPassFormAcess] = useState("");
+  const [typeLoginFormAcess, setTypeLoginFormAcess] = useState("participante");
   const [titleForm, setTitleForm] = useState(
     "Acesse para participar dos eventos"
   );
+
+  localStorage.clear();
 
   function handleChange(value) {
     if (value === "administrador") {
@@ -17,22 +23,25 @@ function Login() {
     } else {
       setTitleForm("Acesse para participar dos eventos");
     }
+
+    setTypeLoginFormAcess(value);
   }
 
-  const onFinish = (values) => {
-    console.log("Success:", values);
-  };
+  function handleSendForm(e) {
+    e.preventDefault();
+    window.alert(loginFormAcess);
+    window.alert(passFormAcess);
+    window.alert(typeLoginFormAcess);
+  }
 
-  const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
-  };
   return (
     <React.Fragment>
       <Row>
         <Col span={12} offset={6} className="content-form-login">
           <Form
+            onSubmitCapture={handleSendForm}
             className="body-form"
-            name="basic"
+            name="form-login"
             labelCol={{
               span: 8,
             }}
@@ -42,8 +51,6 @@ function Login() {
             initialValues={{
               remember: true,
             }}
-            onFinish={onFinish}
-            onFinishFailed={onFinishFailed}
           >
             <img
               src={InsigthLabIcon}
@@ -54,7 +61,7 @@ function Login() {
 
             <Form.Item
               label="Login"
-              name="Login de acesso"
+              name="login-name-acess"
               rules={[
                 {
                   required: true,
@@ -62,12 +69,17 @@ function Login() {
                 },
               ]}
             >
-              <Input />
+              <Input
+                placeholder="Digite seu login de acesso"
+                required
+                onChange={(e) => setLoginFormAcess(e.target.value)}
+                value={loginFormAcess}
+              />
             </Form.Item>
 
             <Form.Item
               label="Senha"
-              name="Senha de acesso"
+              name="login-pass-acesso"
               rules={[
                 {
                   required: true,
@@ -75,7 +87,12 @@ function Login() {
                 },
               ]}
             >
-              <Input.Password />
+              <Input.Password
+                placeholder="Digite sua senha de acesso"
+                required
+                onChange={(e) => setPassFormAcess(e.target.value)}
+                value={passFormAcess}
+              />
             </Form.Item>
 
             <Form.Item
@@ -88,13 +105,25 @@ function Login() {
             >
               <Select
                 className="select-form-login"
-                defaultValue="participante"
                 style={{ width: 120 }}
                 onChange={handleChange}
+                value={typeLoginFormAcess}
+                required
               >
                 <Option value="participante">Participante</Option>
                 <Option value="administrador">Administrador</Option>
               </Select>
+            </Form.Item>
+
+            <Form.Item
+              wrapperCol={{
+                offset: 8,
+                span: 16,
+              }}
+            >
+              <Link to="/register" className="link-page-register">
+                Caso ainda não seja um participante, clique aqui!
+              </Link>
             </Form.Item>
 
             <Form.Item
