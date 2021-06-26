@@ -17,13 +17,13 @@
 
 .button-participate-event {
     width: 100%;
-    background-color: #14a807;
-    border: #14a807;
+    background-color: #14a807 !important;
+    border: #14a807 !important;
 }
 
 .button-participate-event:hover {
-    background-color: #28c01a;
-    border: #28c01a;
+    background-color: #28c01a !important;
+    border: #28c01a !important;
 }
 
 .theme-event {
@@ -47,7 +47,7 @@
     padding: 10px;
     color: #ffffff;
     margin-top: 2%;
-    margin-bottom: 2%;
+    margin-bottom: 2% !important;
 }
 
 .type-event:hover {
@@ -64,7 +64,7 @@
 }
 
 .adress-event-1, .adress-event-2, p {
-    margin-bottom: 0px;
+    margin-bottom: 0px !important;
 }
 
 .show-presition-event {
