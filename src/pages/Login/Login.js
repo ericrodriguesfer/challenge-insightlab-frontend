@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Form, Input, Button, Select } from "antd";
+import { UserOutlined, LeftOutlined } from "@ant-design/icons";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
@@ -136,9 +137,20 @@ function Login() {
                 type="primary"
                 htmlType="submit"
                 className="button-login-form"
+                icon={<UserOutlined />}
               >
                 Logar
               </Button>
+              <Link to="/">
+                <Button
+                  type="default"
+                  htmlType="submit"
+                  className="button-login-form"
+                  icon={<LeftOutlined />}
+                >
+                  Voltar
+                </Button>
+              </Link>
             </Form.Item>
           </Form>
         </Col>
