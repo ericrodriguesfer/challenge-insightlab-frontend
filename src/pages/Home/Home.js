@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button, Card, Layout } from "antd";
-import { LeftOutlined } from "@ant-design/icons";
-import { toast, ToastContainer } from "react-toastify";
+import { UserOutlined } from "@ant-design/icons";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
@@ -11,50 +10,11 @@ import Api from "../../services/api";
 const { Footer } = Layout;
 const { Meta } = Card;
 
-function HomeUser() {
+function Home() {
   const [events, setEvents] = useState([]);
-  const noLoged = "No loged";
   const history = useHistory();
-  const idUser = localStorage.getItem("idUser");
-  const nameUser = localStorage.getItem("nameUser");
-  const registrationUser = localStorage.getItem("registrationUser");
-  const emailUser = localStorage.getItem("emailUser");
-  const logedUser = localStorage.getItem("logedUser");
-  const userUser = localStorage.getItem("userUser");
-  const userAdmin = localStorage.getItem("adminUser");
 
-  const notifyErroLogin = () => {
-    toast.error("Verifue suas credencias e tente o login novamente!", {
-      className: "toastify",
-    });
-  };
-
-  const notifyLogout = () => {
-    toast.success("Sessão de acesso encerrada com sucesso", {
-      className: "toastify",
-    });
-  };
-
-  if (
-    !idUser ||
-    !nameUser ||
-    !registrationUser ||
-    !emailUser ||
-    !logedUser ||
-    !userUser ||
-    !userAdmin ||
-    idUser === noLoged ||
-    nameUser === noLoged ||
-    registrationUser === noLoged ||
-    emailUser === noLoged ||
-    logedUser === false ||
-    userUser === false ||
-    userAdmin === false
-  ) {
-    localStorage.clear();
-    notifyErroLogin();
-    history.push("/login");
-  }
+  localStorage.clear();
 
   useEffect(() => {
     Api.get("/admin/event").then((response) => {
@@ -62,44 +22,36 @@ function HomeUser() {
     });
   });
 
-  function handleLogout() {
-    localStorage.clear();
-    notifyLogout();
-    history.push("/");
-  }
-
   function handleShowEvent(event) {
     localStorage.setItem("idEvent", event._id);
 
-    history.push("/show-event-user");
+    history.push("/show-event");
   }
 
   return (
     <React.Fragment>
-      <ToastContainer />
       <Row>
         <Col span={24}>
-          <nav className="nav-home-user">
+          <nav className="nav-home">
             <img
               src={InsigthLabIcon}
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
-            <h1>Participante, {nameUser}</h1>
-            <Link onClick={handleLogout}>
-              <Button type="primary" icon={<LeftOutlined />}>
-                Sair
+            <Link to="/login">
+              <Button type="primary" icon={<UserOutlined />}>
+                Efetuar Login
               </Button>
             </Link>
           </nav>
         </Col>
       </Row>
-      <div className="conteudo-atividades-user">
+      <div className="conteudo-atividades">
         <center>
           <h1>Lista de eventos</h1>
         </center>
         <center>
-          <Row className="linha-atividades-user">
+          <Row className="linha-atividades">
             {events.length > 0 ? (
               events.map((event) => (
                 <Col span={8}>
@@ -127,7 +79,7 @@ function HomeUser() {
           </Row>
         </center>
       </div>
-      <Footer className="footer-home-user">
+      <Footer className="footer-home">
         Desenvolvedor:&nbsp;
         <a href="https://github.com/ericrodriguesfer" target="_blanck">
           Eric Rodrigues Ferreira
@@ -141,4 +93,4 @@ function HomeUser() {
   );
 }
 
-export default HomeUser;
+export default Home;

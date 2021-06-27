@@ -1,0 +1,56 @@
+.nav-home-admin {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #ffffff;
+    height: 60px;
+    padding: 15px;
+}
+
+.linha-atividades-admin {
+    padding: 25px;
+}
+
+.card-box-atividade-admin {
+    width: 450px !important;
+    border-radius: 12px !important;
+    margin-top: 2%;
+}
+
+.logo-home-nav-admin {
+    width: 50px;
+    height: 50px;
+}
+
+.conteudo-atividades-admin {
+    margin-top: 2%;
+}
+
+.footer-home-admin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 2%;
+}
+
+table {
+    width: 100%;
+}
+
+thead tr td {
+    text-align: center;
+}
+
+td {
+    padding: 10px;
+}
+
+.button-table-events {
+    width: 100% !important;
+}
+
+.button-table-events-add {
+    float: right;
+    width: 100% !important;
+    margin-bottom: 5% !important;
+}
