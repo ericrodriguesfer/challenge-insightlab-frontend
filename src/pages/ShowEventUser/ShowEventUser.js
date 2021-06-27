@@ -93,7 +93,7 @@ function ShowEventUser() {
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
-            <h1>Particpante, {nameUser}</h1>
+            <h1>Participante, {nameUser}</h1>
             <Link to="/home-user">
               <Button type="primary" icon={<DoubleLeftOutlined />}>
                 Voltar a home

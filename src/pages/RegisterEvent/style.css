@@ -1,0 +1,33 @@
+.content-form-login-register-event {
+    margin-top: 1% !important;
+}
+
+.body-form-register-event {
+    width: 700px !important;
+}
+
+.image-logo-form-login-register-event {
+    width: 150px !important;
+    height: 150px !important;
+    margin-left: 52% !important;
+}
+
+.image-title-form-login-register-event {
+    margin-left: 35% !important;
+    margin-bottom: 2% !important;
+}
+
+.button-login-form-register-event {
+    width: 100%;
+    margin-bottom: 1%;
+}
+
+.select-form-login-register-event {
+    width: 100% !important;
+}
+
+.link-page-register-register-event {
+    float: left;
+    font-size: 12px;
+    margin-top: -30px;
+}

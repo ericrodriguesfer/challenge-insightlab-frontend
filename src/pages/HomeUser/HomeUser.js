@@ -56,7 +56,7 @@ function HomeUser() {
     });
   });
 
-  function handleLogou() {
+  function handleLogout() {
     localStorage.clear();
     history.push("/");
   }
@@ -78,8 +78,8 @@ function HomeUser() {
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
-            <h1>Particpante, {nameUser}</h1>
-            <Link onClick={handleLogou}>
+            <h1>Participante, {nameUser}</h1>
+            <Link onClick={handleLogout}>
               <Button type="primary" icon={<LeftOutlined />}>
                 Sair
               </Button>

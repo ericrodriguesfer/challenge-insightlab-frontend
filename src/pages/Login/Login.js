@@ -46,7 +46,6 @@ function Login() {
 
         localStorage.setItem("idUser", response.data.id);
         localStorage.setItem("nameUser", response.data.name);
-        localStorage.setItem("registrationUser", response.data.registration);
         localStorage.setItem("emailUser", response.data.email);
         localStorage.setItem("logedUser", response.data.loged);
         localStorage.setItem("userUser", response.data.user);
@@ -138,7 +137,7 @@ function Login() {
             </Form.Item>
 
             <Form.Item
-              name="remember"
+              name="login-acesso-acesso"
               valuePropName="checked"
               wrapperCol={{
                 offset: 8,

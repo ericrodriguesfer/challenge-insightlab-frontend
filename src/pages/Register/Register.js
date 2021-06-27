@@ -1,18 +1,35 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Form, Input, Button } from "antd";
 import { UserAddOutlined, LeftOutlined } from "@ant-design/icons";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
+import Api from "../../services/api";
 
 function Register() {
+  const [name, setName] = useState("");
+  const [registration, setRegistration] = useState("");
+  const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
+  const [pass, setPass] = useState("");
+  const history = useHistory();
+
+  async function handleSendForm(e) {
+    e.preventDefault();
+
+    try {
+      await Api.post("/user", { name, registration, email, login, pass });
+
+      history.push("/login");
+    } catch (err) {}
+  }
   return (
     <React.Fragment>
       <Row>
         <Col span={12} offset={6} className="content-form-login-register">
           <Form
-            // onSubmitCapture={handleSendForm}
+            onSubmitCapture={handleSendForm}
             className="body-form-register"
             name="form-login"
             labelCol={{
@@ -47,8 +64,8 @@ function Register() {
               <Input
                 placeholder="Digite seu nome de registro"
                 required
-                // onChange={(e) => setLoginFormAcess(e.target.value)}
-                // value={loginFormAcess}
+                onChange={(e) => setName(e.target.value)}
+                value={name}
               />
             </Form.Item>
 
@@ -65,8 +82,8 @@ function Register() {
               <Input
                 placeholder="Digite sua matricula de registro"
                 required
-                // onChange={(e) => setPassFormAcess(e.target.value)}
-                // value={passFormAcess}
+                onChange={(e) => setRegistration(e.target.value)}
+                value={registration}
               />
             </Form.Item>
 
@@ -84,8 +101,8 @@ function Register() {
                 type="email"
                 placeholder="Digite seu email de registro"
                 required
-                // onChange={(e) => setPassFormAcess(e.target.value)}
-                // value={passFormAcess}
+                onChange={(e) => setEmail(e.target.value)}
+                value={email}
               />
             </Form.Item>
 
@@ -102,8 +119,8 @@ function Register() {
               <Input
                 placeholder="Digite seu login de registro"
                 required
-                // onChange={(e) => setPassFormAcess(e.target.value)}
-                // value={passFormAcess}
+                onChange={(e) => setLogin(e.target.value)}
+                value={login}
               />
             </Form.Item>
 
@@ -120,8 +137,8 @@ function Register() {
               <Input.Password
                 placeholder="Digite sua senha de registro"
                 required
-                // onChange={(e) => setPassFormAcess(e.target.value)}
-                // value={passFormAcess}
+                onChange={(e) => setPass(e.target.value)}
+                value={pass}
               />
             </Form.Item>
 
