@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Row, Col, Button } from "antd";
 import { DoubleLeftOutlined, PlusCircleOutlined } from "@ant-design/icons";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
@@ -29,6 +28,7 @@ function ShowEvent() {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Row>
         <Col span={24}>
           <nav className="nav-show-event">

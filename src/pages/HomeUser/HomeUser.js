@@ -2,6 +2,7 @@ import React from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button, Card, Layout } from "antd";
 import { LeftOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
@@ -12,7 +13,42 @@ const { Meta } = Card;
 const data = { name: "Teste", age: 10 };
 
 function HomeUser() {
+  const noLoged = "No loged";
   const history = useHistory();
+  const idUser = localStorage.getItem("idUser");
+  const nameUser = localStorage.getItem("nameUser");
+  const registrationUser = localStorage.getItem("registrationUser");
+  const emailUser = localStorage.getItem("emailUser");
+  const logedUser = localStorage.getItem("logedUser");
+  const userUser = localStorage.getItem("userUser");
+  const userAdmin = localStorage.getItem("adminUser");
+
+  const notifyErroLogin = () => {
+    toast.error("Verifue suas credencias e tente o login novamente!", {
+      className: "toastify",
+    });
+  };
+
+  if (
+    !idUser ||
+    !nameUser ||
+    !registrationUser ||
+    !emailUser ||
+    !logedUser ||
+    !userUser ||
+    !userAdmin ||
+    idUser === noLoged ||
+    nameUser === noLoged ||
+    registrationUser === noLoged ||
+    emailUser === noLoged ||
+    logedUser === false ||
+    userUser === false ||
+    userAdmin === false
+  ) {
+    localStorage.clear();
+    notifyErroLogin();
+    history.push("/login");
+  }
 
   function handleLogou() {
     localStorage.clear();
@@ -28,6 +64,7 @@ function HomeUser() {
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Row>
         <Col span={24}>
           <nav className="nav-home-user">
@@ -36,6 +73,7 @@ function HomeUser() {
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
+            <h1>Particpante, {nameUser}</h1>
             <Link onClick={handleLogou}>
               <Button type="primary" icon={<LeftOutlined />}>
                 Sair

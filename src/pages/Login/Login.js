@@ -1,20 +1,23 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Form, Input, Button, Select } from "antd";
 import { UserOutlined, LeftOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
+import Api from "../../services/api";
 
 const { Option } = Select;
 
 function Login() {
-  const [loginFormAcess, setLoginFormAcess] = useState("");
-  const [passFormAcess, setPassFormAcess] = useState("");
+  const [login, setLogin] = useState("");
+  const [pass, setPass] = useState("");
   const [typeLoginFormAcess, setTypeLoginFormAcess] = useState("participante");
   const [titleForm, setTitleForm] = useState(
     "Acesse para participar dos eventos"
   );
+  const history = useHistory();
 
   localStorage.clear();
 
@@ -28,15 +31,42 @@ function Login() {
     setTypeLoginFormAcess(value);
   }
 
-  function handleSendForm(e) {
+  async function handleSendForm(e) {
     e.preventDefault();
-    window.alert(loginFormAcess);
-    window.alert(passFormAcess);
-    window.alert(typeLoginFormAcess);
+
+    if (typeLoginFormAcess === "administrador") {
+      window.alert("Login de adminstrador");
+    } else {
+      try {
+        const response = await Api.post("/user/login", {
+          login,
+          pass,
+        });
+
+        localStorage.setItem("idUser", response.data.id);
+        localStorage.setItem("nameUser", response.data.name);
+        localStorage.setItem("registrationUser", response.data.registration);
+        localStorage.setItem("emailUser", response.data.email);
+        localStorage.setItem("logedUser", response.data.loged);
+        localStorage.setItem("userUser", response.data.user);
+        localStorage.setItem("adminUser", response.data.admin);
+
+        history.push("/home-user");
+      } catch (err) {
+        notifyErroLogin();
+      }
+    }
   }
+
+  const notifyErroLogin = () => {
+    toast.error("Erro ao tentar efetuar login!", {
+      className: "toastify",
+    });
+  };
 
   return (
     <React.Fragment>
+      <ToastContainer />
       <Row>
         <Col span={12} offset={6} className="content-form-login">
           <Form
@@ -73,8 +103,8 @@ function Login() {
               <Input
                 placeholder="Digite seu login de acesso"
                 required
-                onChange={(e) => setLoginFormAcess(e.target.value)}
-                value={loginFormAcess}
+                onChange={(e) => setLogin(e.target.value)}
+                value={login}
               />
             </Form.Item>
 
@@ -91,8 +121,8 @@ function Login() {
               <Input.Password
                 placeholder="Digite sua senha de acesso"
                 required
-                onChange={(e) => setPassFormAcess(e.target.value)}
-                value={passFormAcess}
+                onChange={(e) => setPass(e.target.value)}
+                value={pass}
               />
             </Form.Item>
 
