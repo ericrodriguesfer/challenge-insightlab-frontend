@@ -32,6 +32,18 @@ function UpdateEvent() {
     });
   };
 
+  const notifyErrorUpdate = () => {
+    toast.error("Erro ao tentar atualizar as informações do evento!", {
+      className: "toastify",
+    });
+  };
+
+  const notifySuccessUpdate = () => {
+    toast.success("Dados do evento atualizados com sucesso!", {
+      className: "toastify",
+    });
+  };
+
   if (
     !idUser ||
     !nameUser ||
@@ -73,8 +85,12 @@ function UpdateEvent() {
         date,
       });
 
+      notifySuccessUpdate();
+
       history.push("/home-admin");
-    } catch (err) {}
+    } catch (err) {
+      notifyErrorUpdate();
+    }
   }
   return (
     <React.Fragment>

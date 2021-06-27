@@ -29,6 +29,12 @@ function HomeUser() {
     });
   };
 
+  const notifyLogout = () => {
+    toast.success("Sessão de acesso encerrada com sucesso", {
+      className: "toastify",
+    });
+  };
+
   if (
     !idUser ||
     !nameUser ||
@@ -58,6 +64,7 @@ function HomeUser() {
 
   function handleLogout() {
     localStorage.clear();
+    notifyLogout();
     history.push("/");
   }
 

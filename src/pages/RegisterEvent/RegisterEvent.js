@@ -36,6 +36,18 @@ function RegisterEvent() {
     });
   };
 
+  const notifyErrorAddEvent = () => {
+    toast.success("Erro ao tentar cadastrar evento!", {
+      className: "toastify",
+    });
+  };
+
+  const notifySuccessAddEvent = () => {
+    toast.success("Evento cadastrado com sucesso!", {
+      className: "toastify",
+    });
+  };
+
   if (
     !idUser ||
     !nameUser ||
@@ -92,8 +104,12 @@ function RegisterEvent() {
         assigments,
       });
 
+      notifySuccessAddEvent();
+
       history.push("/home-admin");
-    } catch (err) {}
+    } catch (err) {
+      notifyErrorAddEvent();
+    }
   }
   return (
     <React.Fragment>

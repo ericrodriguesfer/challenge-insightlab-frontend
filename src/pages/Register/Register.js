@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Form, Input, Button } from "antd";
 import { UserAddOutlined, LeftOutlined } from "@ant-design/icons";
+import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
@@ -15,17 +16,34 @@ function Register() {
   const [pass, setPass] = useState("");
   const history = useHistory();
 
+  const notifyErrorRegister = () => {
+    toast.error("Erro ao cadastrar participante!", {
+      className: "toastify",
+    });
+  };
+
+  const notifySuccessRegister = () => {
+    toast.success("Paricipante cadastrado com sucesso!", {
+      className: "toastify",
+    });
+  };
+
   async function handleSendForm(e) {
     e.preventDefault();
 
     try {
       await Api.post("/user", { name, registration, email, login, pass });
 
+      notifySuccessRegister();
+
       history.push("/login");
-    } catch (err) {}
+    } catch (err) {
+      notifyErrorRegister();
+    }
   }
   return (
     <React.Fragment>
+      <ToastContainer />
       <Row>
         <Col span={12} offset={6} className="content-form-login-register">
           <Form

@@ -27,6 +27,18 @@ function HomeAdmin() {
     });
   };
 
+  const notifyDeletingSuccess = () => {
+    toast.success("Evento deletado com sucesso!", {
+      className: "toastify",
+    });
+  };
+
+  const notifyDeletingError = () => {
+    toast.error("Erro ao tentar deletar o evento!", {
+      className: "toastify",
+    });
+  };
+
   if (
     !idUser ||
     !nameUser ||
@@ -56,8 +68,12 @@ function HomeAdmin() {
     try {
       await Api.delete(`/admin/event/${event}`);
 
+      notifyDeletingSuccess();
+
       setEvents(events.filter((event) => event._id !== event));
-    } catch (err) {}
+    } catch (err) {
+      notifyDeletingError();
+    }
   }
 
   async function handleEditEvent(event) {

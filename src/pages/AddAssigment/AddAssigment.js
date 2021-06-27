@@ -28,6 +28,18 @@ function AddAssigment() {
     });
   };
 
+  const notifyErrorAssigment = () => {
+    toast.error("Erro ao tentar adicionar atividade ao evento!", {
+      className: "toastify",
+    });
+  };
+
+  const notifySuccessAssigment = () => {
+    toast.setDuration("Atividade adicionado ao evento com sucesso!", {
+      className: "toastify",
+    });
+  };
+
   if (
     !idUser ||
     !nameUser ||
@@ -57,8 +69,12 @@ function AddAssigment() {
         duration,
       });
 
+      notifySuccessAssigment();
+
       history.push("/home-admin");
-    } catch (err) {}
+    } catch (err) {
+      notifyErrorAssigment();
+    }
   }
 
   return (

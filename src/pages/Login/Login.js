@@ -37,6 +37,12 @@ function Login() {
     });
   };
 
+  const notifyLoginSuccess = () => {
+    toast.success("Logado na plataforma com sucesso!", {
+      className: "toastify",
+    });
+  };
+
   async function handleSendForm(e) {
     e.preventDefault();
 
@@ -50,6 +56,8 @@ function Login() {
         localStorage.setItem("logedUser", response.data.loged);
         localStorage.setItem("userUser", response.data.user);
         localStorage.setItem("adminUser", response.data.admin);
+
+        notifyLoginSuccess();
 
         history.push("/home-admin");
       } catch (err) {
@@ -66,6 +74,8 @@ function Login() {
         localStorage.setItem("logedUser", response.data.loged);
         localStorage.setItem("userUser", response.data.user);
         localStorage.setItem("adminUser", response.data.admin);
+
+        notifyLoginSuccess();
 
         history.push("/home-user");
       } catch (err) {
