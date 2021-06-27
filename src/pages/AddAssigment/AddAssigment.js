@@ -35,7 +35,7 @@ function AddAssigment() {
   };
 
   const notifySuccessAssigment = () => {
-    toast.setDuration("Atividade adicionado ao evento com sucesso!", {
+    toast.success("Atividade adicionado ao evento com sucesso!", {
       className: "toastify",
     });
   };
