@@ -1,4 +1,4 @@
-.nav-show-event {
+.nav-show-event-user {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -7,7 +7,11 @@
     padding: 15px;
 }
 
-.box-show-event {
+.content-form-login-user {
+    margin-top: 10%;
+}
+
+.box-show-event-user {
     margin-top: -15%;
     width: 600px;
     background-color: #ffffff;
@@ -15,18 +19,18 @@
     padding: 15px;
 }
 
-.button-participate-event {
+.button-participate-event-user {
     width: 100%;
     background-color: #14a807 !important;
     border: #14a807 !important;
 }
 
-.button-participate-event:hover {
+.button-participate-event-user:hover {
     background-color: #28c01a !important;
     border: #28c01a !important;
 }
 
-.theme-event {
+.theme-event-user {
     width: 100%;
     background-color: #079da8 !important;
     border-radius: 8px;
@@ -35,12 +39,12 @@
     margin-bottom: 1%;
 }
 
-.theme-event:hover {
+.theme-event-user:hover {
     background-color: #11b0bb !important;
     transition: 0.3s;
 }
 
-.type-event {
+.type-event-user {
     width: 100%;
     background-color: #ca0b0b !important;
     border-radius: 8px;
@@ -50,12 +54,12 @@
     margin-bottom: 2% !important;
 }
 
-.type-event:hover {
+.type-event-user:hover {
     background-color: #ac2424 !important;
     transition: 0.3s;
 }
 
-.adress-event {
+.adress-event-user {
     border: 1px solid #f6f6f6;
     border-radius: 8px;
     display: flex;
@@ -63,17 +67,13 @@
     align-items: center;
 }
 
-.adress-event-1, .adress-event-2, p {
+.adress-event-1-user, .adress-event-2-user, p {
     margin-bottom: 0px !important;
 }
 
-.show-presition-event {
+.show-presition-event-user {
     border: 1px solid #f6f6f6;
     display: flex;
     justify-content: space-around;
     margin-bottom: 2%;
-}
-
-input {
-    border: 0px;
 }

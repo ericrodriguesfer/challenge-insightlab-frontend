@@ -5,6 +5,8 @@ import Home from "../pages/Home/Home";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
 import ShowEvent from "../pages/ShowEvent/ShowEvent";
+import HomeUser from "../pages/HomeUser/HomeUser";
+import ShowEventUser from "../pages/ShowEventUser/ShowEventUser";
 
 function Routes() {
   return (
@@ -14,6 +16,8 @@ function Routes() {
         <Route path="/login" exact component={Login}></Route>
         <Route path="/register" exact component={Register}></Route>
         <Route path="/show-event" exact component={ShowEvent}></Route>
+        <Route path="/home-user" exact component={HomeUser}></Route>
+        <Route path="/show-event-user" exact component={ShowEventUser}></Route>
       </Switch>
     </BrowserRouter>
   );

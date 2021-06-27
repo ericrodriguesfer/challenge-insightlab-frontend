@@ -1,25 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button, Card, Layout } from "antd";
 import { UserOutlined } from "@ant-design/icons";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
+import Api from "../../services/api";
 
 const { Footer } = Layout;
 const { Meta } = Card;
 
-const data = { name: "Teste", age: 10 };
-
 function Home() {
+  const [events, setEvents] = useState([]);
   const history = useHistory();
 
   localStorage.clear();
 
-  function handleShowEvent(data) {
-    console.log(data);
-    localStorage.setItem("nameEvent", data.name);
-    localStorage.setItem("ageEvent", data.age);
+  useEffect(() => {
+    Api.get("/admin/event").then((response) => {
+      setEvents(response.data);
+    });
+  });
+
+  function handleShowEvent(event) {
+    localStorage.setItem("idEvent", event._id);
+
     history.push("/show-event");
   }
 
@@ -47,26 +52,30 @@ function Home() {
         </center>
         <center>
           <Row className="linha-atividades">
-            <Col span={8}>
-              <Link onClick={(e) => handleShowEvent(data)}>
-                <Card
-                  className="card-box-atividade"
-                  hoverable
-                  style={{ width: 240 }}
-                  cover={
-                    <img
-                      alt="Imagem de amostragem para evento Insight Lab"
-                      src="https://avatars.githubusercontent.com/u/29547270?s=200&v=4"
-                    />
-                  }
-                >
-                  <Meta
-                    title="Titulo do evento"
-                    description="www.instagram.com"
-                  />
-                </Card>
-              </Link>
-            </Col>
+            {events.length > 0 ? (
+              events.map((event) => (
+                <Col span={8}>
+                  <Link onClick={(e) => handleShowEvent(event)}>
+                    <Card
+                      key={event._id}
+                      className="card-box-atividade"
+                      hoverable
+                      style={{ width: 240 }}
+                      cover={
+                        <img
+                          alt="Imagem de amostragem para evento Insight Lab"
+                          src="https://avatars.githubusercontent.com/u/29547270?s=200&v=4"
+                        />
+                      }
+                    >
+                      <Meta title={event.name} description={event.theme} />
+                    </Card>
+                  </Link>
+                </Col>
+              ))
+            ) : (
+              <h4>Sem Eventos</h4>
+            )}
           </Row>
         </center>
       </div>
