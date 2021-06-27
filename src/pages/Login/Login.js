@@ -31,17 +31,34 @@ function Login() {
     setTypeLoginFormAcess(value);
   }
 
+  const notifyErroLogin = () => {
+    toast.error("Erro ao tentar efetuar login!", {
+      className: "toastify",
+    });
+  };
+
   async function handleSendForm(e) {
     e.preventDefault();
 
     if (typeLoginFormAcess === "administrador") {
-      window.alert("Login de adminstrador");
+      try {
+        const response = await Api.post(`/admin/login`, { login, pass });
+
+        localStorage.setItem("idUser", response.data.id);
+        localStorage.setItem("nameUser", response.data.name);
+        localStorage.setItem("registrationUser", response.data.registration);
+        localStorage.setItem("emailUser", response.data.email);
+        localStorage.setItem("logedUser", response.data.loged);
+        localStorage.setItem("userUser", response.data.user);
+        localStorage.setItem("adminUser", response.data.admin);
+
+        history.push("/home-admin");
+      } catch (err) {
+        notifyErroLogin();
+      }
     } else {
       try {
-        const response = await Api.post("/user/login", {
-          login,
-          pass,
-        });
+        const response = await Api.post("/user/login", { login, pass });
 
         localStorage.setItem("idUser", response.data.id);
         localStorage.setItem("nameUser", response.data.name);
@@ -57,12 +74,6 @@ function Login() {
       }
     }
   }
-
-  const notifyErroLogin = () => {
-    toast.error("Erro ao tentar efetuar login!", {
-      className: "toastify",
-    });
-  };
 
   return (
     <React.Fragment>
