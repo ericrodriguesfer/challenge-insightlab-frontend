@@ -29,7 +29,7 @@ function ShowEventUser() {
   };
 
   const notifyParticipateEvent = () => {
-    toast.success("Você está participando desde evento!", {
+    toast.success("Você está participando deste evento!", {
       className: "toastify",
     });
   };
