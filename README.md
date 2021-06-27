@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+# Frontend implementado em solução ao desafio Full Stack da Insight Lab
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## SAIBA MAIS SOBRE O PROJETO
 
-## Available Scripts
+O Frontend implementado consiste na resolução do desafio Full Stack da Insight Lab, essa a parte destinada a criação de um Frontend que implementa e gerencia o uso da API e regras de negócio da [API do projeto](https://github.com/ericrodriguesfer/chalenge-insightlab-backend). Mas em que consiste o projeto? Se dá em uma agenda de eventos, onde um adminstrador (Governador) pode acessar a plataforma e gerenciar os eventos (CRUD: Criar, Editar, Atualizar e Deletar), assim o mesmo pode gerenciar os eventos os criando, adicionando datas e temas aos mesmos, como também adicionar as atividades de cada evento e monitorar quais atividades tem a cada evento, quantos participantes e quais são os participantes de cada evento. O segundo fluxo do acesso é o dos Participantes (Alunos, Semelhantes e etc), onde os mesmos podem ver os eventos e suas informações, assim como as atividades que terão o evento e com essas informações o mesmo pode decidir participar de dado evento de sua preferência ou não.
 
-In the project directory, you can run:
+## TECNOLOGIAS QUE FORAM UTILIZADAS NO PROJETO
+* Javascript
+* ReactJS
+* Ant Design
+* Axios
+* react-toastify
+* Conhecimentos de HTML e CSS
 
-### `yarn start`
+## INFORMAÇÕES IMPORTANTES
+* Acesse a plataforma já em produção no link abaixo:
+[Agenda de Eventos - Insight Lab](https://chalenge-insightlab-frontend.herokuapp.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## VEJA ALGUMAS FOTOS DE COMO FICOU A INTERFACE DO PROJETO
 
-### `yarn test`
+![Print 1 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-1.png)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+![Print 2 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-2.png)
 
-### `yarn build`
+![Print 3 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-3.png)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+![Print 4 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-4.png)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![Print 5 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-5.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+![Print 6 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-6.png)
 
-### `yarn eject`
+![Print 7 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-7.png)
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+![Print 8 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-8.png)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![Print 9 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-9.png)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+![Print 10 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-10.png)
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![Print 11 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-11.png)
 
-## Learn More
+![Print 12 da aplicação](https://github.com/ericrodriguesfer/utilities-readme/blob/master/insightlab/img-12.png)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## CASO QUEIRA ENTENDER O FUNCIONAMENTO PRÁTICO DO SISTEMA
 
-### Code Splitting
+[Apresentação narrada da utilização do sistema](https://youtu.be/9IMQ2H-y8U4)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## CASO QUEIRA SABER MAIS SOBRE O PROJETO
 
-### Analyzing the Bundle Size
+Pode entrar em contato comigo pelo seguinte email: ericdesenvolvedor7@gmail.com
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<!-- 
+    add readme for explications e informations finishing chalenge
+-->
