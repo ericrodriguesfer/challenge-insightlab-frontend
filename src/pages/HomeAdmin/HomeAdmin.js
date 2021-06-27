@@ -60,12 +60,31 @@ function HomeAdmin() {
     } catch (err) {}
   }
 
-  function handleEditEvent(event) {
-    window.alert(event);
+  async function handleEditEvent(event) {
+    try {
+      const response = await Api.get(`/admin/event/${event}`);
+
+      localStorage.setItem("idEvent", response.data._id);
+      localStorage.setItem("nameEvent", response.data.name);
+      localStorage.setItem("nameTheme", response.data.theme);
+      localStorage.setItem("nameType", response.data.type);
+      localStorage.setItem("nameOclock", response.data.oclock);
+      localStorage.setItem("nameDate", response.data.date);
+
+      history.push("/update-event");
+    } catch (err) {}
   }
 
   function handleShowEvent(event) {
-    window.alert(event);
+    localStorage.setItem("idEvent", event);
+
+    history.push("/show-event-admin");
+  }
+
+  function handleAddAssigmentEvent(event) {
+    localStorage.setItem("idEvent", event);
+
+    history.push("/add-assigment");
   }
 
   function handleLogout() {
@@ -113,6 +132,7 @@ function HomeAdmin() {
                   <td>Participantes</td>
                   <td>Apagar</td>
                   <td>Editar</td>
+                  <td>Atividades</td>
                   <td>Visualizar</td>
                 </tr>
               </thead>
@@ -140,6 +160,15 @@ function HomeAdmin() {
                           onClick={(e) => handleEditEvent(event._id)}
                         >
                           Editar
+                        </Button>
+                      </td>
+                      <td>
+                        <Button
+                          className="button-table-events"
+                          type="default"
+                          onClick={(e) => handleAddAssigmentEvent(event._id)}
+                        >
+                          Atividades
                         </Button>
                       </td>
                       <td>

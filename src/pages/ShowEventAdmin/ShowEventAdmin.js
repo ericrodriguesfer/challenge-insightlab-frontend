@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button, Steps } from "antd";
-import { DoubleLeftOutlined, PlusCircleOutlined } from "@ant-design/icons";
+import { DoubleLeftOutlined, LeftOutlined } from "@ant-design/icons";
 import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
@@ -10,16 +10,16 @@ import Api from "../../services/api";
 
 const { Step } = Steps;
 
-function ShowEventUser() {
+function ShowEventAdmin() {
   const [event, setEvent] = useState({});
   const [eventAdress, setEventAdress] = useState({});
+  const [eventParticipates, setEventParticipates] = useState({});
   const [eventAssigments, setEventAssigments] = useState({});
   const idEvent = localStorage.getItem("idEvent");
   const noLoged = "No loged";
   const history = useHistory();
   const idUser = localStorage.getItem("idUser");
   const nameUser = localStorage.getItem("nameUser");
-  const registrationUser = localStorage.getItem("registrationUser");
   const emailUser = localStorage.getItem("emailUser");
   const logedUser = localStorage.getItem("logedUser");
   const userUser = localStorage.getItem("userUser");
@@ -31,29 +31,15 @@ function ShowEventUser() {
     });
   };
 
-  const notifyParticipateEvent = () => {
-    toast.success("Você está participando deste evento!", {
-      className: "toastify",
-    });
-  };
-
-  const notifyErrorParticipateEvent = () => {
-    toast.error("Erro ao tentar participar desde evento!", {
-      className: "toastify",
-    });
-  };
-
   if (
     !idUser ||
     !nameUser ||
-    !registrationUser ||
     !emailUser ||
     !logedUser ||
     !userUser ||
     !userAdmin ||
     idUser === noLoged ||
     nameUser === noLoged ||
-    registrationUser === noLoged ||
     emailUser === noLoged ||
     logedUser === false ||
     userUser === false ||
@@ -68,23 +54,10 @@ function ShowEventUser() {
     Api.get(`/admin/event/${idEvent}`).then((response) => {
       setEvent(response.data);
       setEventAdress(response.data.adress);
+      setEventParticipates(response.data.participants);
       setEventAssigments(response.data.assigments);
     });
   }, [idEvent]);
-
-  function handleParticipateEvent() {
-    try {
-      Api.post(`/user/event/${idEvent}`, {
-        id: idUser,
-        name: nameUser,
-        registration: registrationUser,
-      });
-
-      notifyParticipateEvent();
-    } catch (err) {
-      notifyErrorParticipateEvent();
-    }
-  }
 
   return (
     <React.Fragment>
@@ -97,8 +70,8 @@ function ShowEventUser() {
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
-            <h1>Participante, {nameUser}</h1>
-            <Link to="/home-user">
+            <h1>Administrador, {nameUser}</h1>
+            <Link to="/home-admin">
               <Button type="primary" icon={<DoubleLeftOutlined />}>
                 Voltar a home
               </Button>
@@ -131,6 +104,19 @@ function ShowEventUser() {
                   <p>Horário: {event.oclock}</p>
                   <p>Data: {event.date}</p>
                 </div>
+                <h2>Participantes</h2>
+                <div className="show-participants">
+                  {eventParticipates.length > 0 ? (
+                    eventParticipates.map((participant) => (
+                      <div className="participant" key={participant._id}>
+                        <p>Nome: {participant.name}</p>
+                        <p>Matricula: {participant.registration}</p>
+                      </div>
+                    ))
+                  ) : (
+                    <h4>Sem participates</h4>
+                  )}
+                </div>
                 <h2>Atividades do evento</h2>
                 <div className="show-atividades">
                   {eventAssigments.length > 0 ? (
@@ -147,15 +133,15 @@ function ShowEventUser() {
                     <h4>Sem atividades</h4>
                   )}
                 </div>
-
-                <Button
-                  className="button-participate-event"
-                  type="primary"
-                  icon={<PlusCircleOutlined />}
-                  onClick={(e) => handleParticipateEvent()}
-                >
-                  Participar
-                </Button>
+                <Link to="/home-admin">
+                  <Button
+                    className="button-participate-event-admin"
+                    type="primary"
+                    icon={<LeftOutlined />}
+                  >
+                    Voltar
+                  </Button>
+                </Link>
               </div>
             </div>
           </Col>
@@ -165,4 +151,4 @@ function ShowEventUser() {
   );
 }
 
-export default ShowEventUser;
+export default ShowEventAdmin;
