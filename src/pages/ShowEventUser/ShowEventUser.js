@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, Link } from "react-router-dom";
 import { Row, Col, Button } from "antd";
 import { DoubleLeftOutlined, PlusCircleOutlined } from "@ant-design/icons";
@@ -6,8 +6,12 @@ import { toast, ToastContainer } from "react-toastify";
 
 import "./style.css";
 import InsigthLabIcon from "../../images/insigthlab-icon.png";
+import Api from "../../services/api";
 
 function ShowEventUser() {
+  const [event, setEvent] = useState({});
+  const [eventAdress, setEventAdress] = useState({});
+  const idEvent = localStorage.getItem("idEvent");
   const noLoged = "No loged";
   const history = useHistory();
   const idUser = localStorage.getItem("idUser");
@@ -20,6 +24,18 @@ function ShowEventUser() {
 
   const notifyErroLogin = () => {
     toast.error("Verifue suas credencias e tente o login novamente!", {
+      className: "toastify",
+    });
+  };
+
+  const notifyParticipateEvent = () => {
+    toast.success("Você está participando desde evento!", {
+      className: "toastify",
+    });
+  };
+
+  const notifyErrorParticipateEvent = () => {
+    toast.error("Erro ao tentar participar desde evento!", {
       className: "toastify",
     });
   };
@@ -44,6 +60,28 @@ function ShowEventUser() {
     notifyErroLogin();
     history.push("/login");
   }
+
+  useEffect(() => {
+    Api.get(`/admin/event/${idEvent}`).then((response) => {
+      setEvent(response.data);
+      setEventAdress(response.data.adress);
+    });
+  }, [idEvent]);
+
+  function handleParticipateEvent() {
+    try {
+      Api.post(`/user/event/${idEvent}`, {
+        id: idUser,
+        name: nameUser,
+        registration: registrationUser,
+      });
+
+      notifyParticipateEvent();
+    } catch (err) {
+      notifyErrorParticipateEvent();
+    }
+  }
+
   return (
     <React.Fragment>
       <ToastContainer />
@@ -55,6 +93,7 @@ function ShowEventUser() {
               className="logo-home-nav"
               alt="Logo da InsightLab"
             />
+            <h1>Particpante, {nameUser}</h1>
             <Link to="/home-user">
               <Button type="primary" icon={<DoubleLeftOutlined />}>
                 Voltar a home
@@ -68,35 +107,35 @@ function ShowEventUser() {
           <Col span={12} offset={6} className="content-form-login-user">
             <div className="box-show-event-user">
               <div className="content-event-user">
-                <h1>Titulo ou nome do evento</h1>
+                <h1>{event.name}</h1>
                 <hr color="#f6f6f6" />
-                <p className="theme-event-user">Tema: IO</p>
+                <p className="theme-event-user">Tema: {event.theme}</p>
                 <h2>Endereço</h2>
                 <div className="adress-event-user">
                   <div className="adress-event-1-user">
-                    <p>Rua: Rua A</p>
-                    <p>Número: 0</p>
-                    <p>Bairro: Gatemaltecos</p>
+                    <p>Rua: {eventAdress.street}</p>
+                    <p>Número: {eventAdress.number}</p>
+                    <p>Bairro: {eventAdress.district}</p>
                   </div>
                   <div className="adress-event-2-user">
-                    <p>Cidade: Fortaleza</p>
-                    <p>Instituição: UFC</p>
+                    <p>Cidade: {eventAdress.city}</p>
+                    <p>Instituição: {eventAdress.institution}</p>
                   </div>
                 </div>
-                <p className="type-event-user">Tipo: Virtual</p>
+                <p className="type-event-user">Tipo: {event.type}</p>
                 <div className="show-presition-event-user">
-                  <p>Horário: 12:00 Horas</p>
-                  <p>Data: 20/20/2020</p>
+                  <p>Horário: {event.oclock}</p>
+                  <p>Data: {event.date}</p>
                 </div>
-                <Link>
-                  <Button
-                    className="button-participate-event"
-                    type="primary"
-                    icon={<PlusCircleOutlined />}
-                  >
-                    Participar
-                  </Button>
-                </Link>
+
+                <Button
+                  className="button-participate-event"
+                  type="primary"
+                  icon={<PlusCircleOutlined />}
+                  onClick={(e) => handleParticipateEvent()}
+                >
+                  Participar
+                </Button>
               </div>
             </div>
           </Col>
